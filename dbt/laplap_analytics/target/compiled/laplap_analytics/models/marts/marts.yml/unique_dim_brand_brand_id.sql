@@ -1,0 +1,21 @@
+
+    
+    
+
+with dbt_test__target as (
+
+  select brand_id as unique_field
+  from `laplap-analytics`.`laplap_analytics`.`dim_brand`
+  where brand_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+

@@ -1,0 +1,130 @@
+version: 2
+
+models:
+
+  - name: dim_brand
+    description: "Current-state brand dimension."
+    columns:
+      - name: brand_id
+        tests:
+          - not_null
+          - unique
+
+      - name: brand_name
+        tests:
+          - not_null
+
+  - name: dim_cpu
+    description: "Current-state CPU model dimension."
+    columns:
+      - name: cpu_model_id
+        tests:
+          - not_null
+          - unique
+
+      - name: cpu_model_name
+        tests:
+          - not_null
+
+  - name: dim_gpu
+    description: "Current-state GPU model dimension."
+    columns:
+      - name: gpu_model_id
+        tests:
+          - not_null
+          - unique
+
+      - name: gpu_model_name
+        tests:
+          - not_null
+
+  - name: dim_laptop_benchmark
+    description: "Latest available benchmark results for each laptop."
+    columns:
+      - name: benchmark_result_id
+        tests:
+          - not_null
+          - unique
+
+      - name: laptop_id
+        tests:
+          - not_null
+  
+  - name: dim_laptop
+    description: "Current-state laptop product dimension enriched with brand, CPU, GPU and benchmark attributes."
+
+    columns:
+      - name: laptop_id
+        tests:
+          - not_null
+          - unique
+
+      - name: laptop_name
+        tests:
+          - not_null
+
+      - name: brand_id
+        tests:
+          - not_null
+  
+  - name: fct_product_engagement
+    description: "Product-level engagement metrics used to analyze laptop popularity and comparison intent."
+
+    columns:
+      - name: laptop_id
+        tests:
+          - not_null
+          - unique
+
+      - name: view_count
+        tests:
+          - not_null
+
+      - name: select_count
+        tests:
+          - not_null
+
+      - name: add_compare_count
+        tests:
+          - not_null
+
+      - name: interaction_count
+        tests:
+          - not_null
+
+      - name: popularity_score
+        tests:
+          - not_null
+
+      - name: intent_rate
+        tests:
+          - not_null
+  
+  - name: fct_comparison_behavior
+    description: "Comparison interaction events with comparison-set size and behavior attributes."
+
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+          - unique
+
+      - name: user_pseudo_id
+        tests:
+          - not_null
+
+      - name: session_id
+        tests:
+          - not_null
+
+      - name: comparison_device_count
+        tests:
+          - not_null
+
+      - name: comparison_type
+        tests:
+          - not_null
+
+      - name: comparison_size_group
+        tests:
+          - not_null
