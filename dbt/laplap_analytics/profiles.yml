@@ -1,0 +1,12 @@
+laplap_analytics:
+  target: dev
+
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: laplap-analytics
+      dataset: laplap_analytics
+      threads: 2
+      location: US
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"

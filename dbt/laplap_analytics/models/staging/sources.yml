@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: laplap
+    description: "Raw append-only data ingested from ClickHouse into BigQuery."
+    database: laplap-analytics
+    schema: laplap_analytics
+
+    tables:
+      - name: bronze_user_event_tracking
+        description: "Append-only user event history."
+        columns:
+          - name: id
+            tests:
+              - not_null
+          - name: event_name
+            tests:
+              - not_null
+      
+      - name: bronze_laptop_model_raw
+        description: "Append-only laptop model history."
+      
+      - name: bronze_brand_raw
+        description: "Append-only brand history."
+
+      - name: bronze_cpu_model_raw
+        description: "Append-only CPU model history."
+
+      - name: bronze_gpu_model_raw
+        description: "Append-only GPU model history."
+
+      - name: bronze_laptop_benchmark_result
+        description: "Current benchmark snapshot."

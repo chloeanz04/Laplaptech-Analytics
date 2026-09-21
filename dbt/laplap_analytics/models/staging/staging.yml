@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_user_event_tracking
+    description: "Cleaned and parsed user-event stream."
+    columns:
+      - name: id
+        tests:
+          - not_null
+      - name: event_name
+        tests:
+          - not_null
+
+  - name: stg_laptop_model
+    description: "Cleaned laptop model records from append-only history."
+    columns:
+      - name: laptop_id
+        tests:
+          - not_null
+      - name: laptop_name
+        tests:
+          - not_null
