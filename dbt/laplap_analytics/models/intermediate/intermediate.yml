@@ -1,0 +1,31 @@
+version: 2
+
+models:
+
+  - name: int_laptop_model_latest
+    description: "Latest known version of each laptop model from append-only history."
+
+    columns:
+
+      - name: laptop_id
+        tests:
+          - not_null
+          - unique
+      
+  - name: int_events_parsed
+    description: "Parsed event model used for product engagement and comparison analytics."
+
+    columns:
+
+      - name: id
+        tests:
+          - not_null
+          - unique
+      
+      - name: event_name
+        tests:
+          - not_null
+      
+      - name: user_pseudo_id
+        tests:
+          - not_null
